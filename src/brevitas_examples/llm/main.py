@@ -26,6 +26,8 @@ from brevitas_examples.llm.llm_quant.prepare_for_quantize import replace_mha_wit
 from brevitas_examples.llm.llm_quant.run_utils import CastFloat16ToFloat32
 from brevitas_examples.llm.llm_quant.run_utils import get_model_impl
 
+from threshold_quantize import *
+
 parser = argparse.ArgumentParser()
 parser.add_argument(
     '--model',
@@ -213,6 +215,9 @@ def validate(args):
              (args.input_scale_type == 'dynamic' and args.input_quant_type == 'asym'))):
             assert args.act_calibration, "Static input quantization is being applied without activation calibration. Set --act-calibration."
 
+def threshold_systolicx(model):
+    for layer in model.children():
+        weights = list(layer.parameters())
 
 def main():
     args = parser.parse_args()
@@ -278,6 +283,9 @@ def main():
     else:
         layers_to_quantize = get_model_impl(model).layers
 
+    # Threshold quantization
+    # threshold(model)
+
     if not args.no_quantize:
         print("Applying model quantization...")
         quantize_model(
@@ -321,7 +329,8 @@ def main():
         print("Applying bias correction...")
         apply_bias_correction(model, calibration_loader, args.nsamples)
         print("Bias correction applied.")
-
+    
+    threshold(model)
     if args.eval:
         print("Model eval...")
         ppl = model_eval(model, val_data, args.seqlen)
@@ -332,6 +341,9 @@ def main():
         # Currently we always export on CPU with a float32 container to avoid float16 CPU errors
         model = model.cpu().to(dtype=torch.float32)
         model_export(model, calibration_loader[0], args)
+
+    # torch.save(model.state_dict(), 'weights_opt.pth')
+    # threshold(model)
 
 
 if __name__ == '__main__':
