@@ -40,6 +40,8 @@ parser.add_argument(
     '--nsamples', type=int, default=128, help='Number of calibration data samples. Default: 128.')
 parser.add_argument('--seqlen', type=int, default=2048, help='Sequence length. Default: 2048.')
 parser.add_argument('--eval', action='store_true', help='Eval model PPL on C4.')
+# Added for thresholding
+parser.add_argument('--threshold', action='store_true', help='Threshold quantization.')
 parser.add_argument('--weight-bit-width', type=int, default=8, help='Weight bit width. Default: 8.')
 parser.add_argument(
     '--weight-param-method',
@@ -218,6 +220,7 @@ def validate(args):
 def threshold_systolicx(model):
     for layer in model.children():
         weights = list(layer.parameters())
+        print(weights)
 
 def main():
     args = parser.parse_args()
@@ -315,6 +318,8 @@ def main():
         print(model)
         print("Model quantization applied.")
 
+    # threshold_systolicx(model)
+
     if args.act_calibration:
         print("Apply act calibration...")
         apply_calibration(model, calibration_loader, args.nsamples)
@@ -330,7 +335,11 @@ def main():
         apply_bias_correction(model, calibration_loader, args.nsamples)
         print("Bias correction applied.")
     
-    threshold(model)
+    if args.threshold:
+        print("Applying thresholding...")
+        threshold(model)
+        print("Thresholding applied")
+
     if args.eval:
         print("Model eval...")
         ppl = model_eval(model, val_data, args.seqlen)

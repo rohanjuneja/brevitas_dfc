@@ -3,8 +3,7 @@ from torch.nn.utils import parameters_to_vector
 
 # def threshold():
 def threshold(model):
-    for layer in model.modules():
-        print(layer)
+    for layer in model.parameters():
     # while 1:
         # print(list(layer.parameters()))
         weight_og   =   layer.quant_weight().int()

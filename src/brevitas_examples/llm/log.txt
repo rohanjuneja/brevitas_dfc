@@ -1,0 +1,1029 @@
+/temp/rohan/installs/ananconda3/envs/gpu-env/lib/python3.9/site-packages/torch/overrides.py:110: UserWarning: 'has_cuda' is deprecated, please use 'torch.backends.cuda.is_built()'
+  torch.has_cuda,
+/temp/rohan/installs/ananconda3/envs/gpu-env/lib/python3.9/site-packages/torch/overrides.py:111: UserWarning: 'has_cudnn' is deprecated, please use 'torch.backends.cudnn.is_available()'
+  torch.has_cudnn,
+/temp/rohan/installs/ananconda3/envs/gpu-env/lib/python3.9/site-packages/torch/overrides.py:117: UserWarning: 'has_mps' is deprecated, please use 'torch.backends.mps.is_built()'
+  torch.has_mps,
+/temp/rohan/installs/ananconda3/envs/gpu-env/lib/python3.9/site-packages/torch/overrides.py:118: UserWarning: 'has_mkldnn' is deprecated, please use 'torch.backends.mkldnn.is_available()'
+  torch.has_mkldnn,
+/temp/rohan/installs/ananconda3/envs/gpu-env/lib/python3.9/site-packages/torch/_utils.py:831: UserWarning: TypedStorage is deprecated. It will be removed in the future and UntypedStorage will be the only storage class. This should only matter to you if you are using storages directly.  To access UntypedStorage directly, use tensor.untyped_storage() instead of tensor.storage()
+  return self.fget.__get__(instance, owner)()
+Using custom data configuration allenai--c4-ec45c889631c3c39
+Reusing dataset json (/home/rohan/.cache/huggingface/datasets/allenai___json/allenai--c4-ec45c889631c3c39/0.0.0/a3e658c4731e59120d44081ac10bf85dc7e1388126b92338344ce9661907f253)
+Using custom data configuration allenai--c4-7700d5d1c53cf32f
+Reusing dataset json (/home/rohan/.cache/huggingface/datasets/allenai___json/allenai--c4-7700d5d1c53cf32f/0.0.0/a3e658c4731e59120d44081ac10bf85dc7e1388126b92338344ce9661907f253)
+Model loading...
+Model loaded.
+Data loading...
+Data loaded.
+Applying model quantization...
+OPTForCausalLM(
+  (model): OPTModel(
+    (decoder): OPTDecoder(
+      (embed_tokens): Embedding(50272, 768, padding_idx=1)
+      (embed_positions): OPTLearnedPositionalEmbedding(2050, 768)
+      (final_layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+      (layers): ModuleList(
+        (0-11): 12 x OPTDecoderLayer(
+          (self_attn): OPTAttention(
+            (k_proj): QuantLinear(
+              in_features=768, out_features=768, bias=True
+              (input_quant): ActQuantProxyFromInjector(
+                (_zero_hw_sentinel): StatelessBuffer()
+              )
+              (output_quant): ActQuantProxyFromInjector(
+                (_zero_hw_sentinel): StatelessBuffer()
+              )
+              (weight_quant): WeightQuantProxyFromInjector(
+                (_zero_hw_sentinel): StatelessBuffer()
+                (tensor_quant): RescalingIntQuant(
+                  (int_quant): IntQuant(
+                    (float_to_int_impl): RoundSte()
+                    (tensor_clamp_impl): TensorClampSte()
+                    (delay_wrapper): DelayWrapper(
+                      (delay_impl): _NoDelay()
+                    )
+                  )
+                  (scaling_impl): ExpandReshapeScalingWrapper(
+                    (wrapped_scaling_impl): ParameterFromStatsFromParameterScaling(
+                      (parameter_list_stats): _ParameterListStats(
+                        (first_tracked_param): _ViewParameterWrapper(
+                          (view_shape_impl): OverSubChannelBlockView(
+                            (permute_impl): Identity()
+                          )
+                        )
+                        (stats): _Stats(
+                          (stats_impl): AbsMinMax(
+                            (zero): StatelessBuffer()
+                          )
+                        )
+                      )
+                      (stats_scaling_impl): _StatsScaling(
+                        (affine_rescaling): Identity()
+                        (restrict_clamp_scaling): _RestrictClampValue(
+                          (clamp_min_ste): ScalarClampMinSte()
+                          (restrict_value_impl): FloatRestrictValue()
+                        )
+                        (restrict_scaling_pre): Identity()
+                      )
+                      (restrict_inplace_preprocess): Identity()
+                    )
+                    (slice_tensor): SliceTensor()
+                  )
+                  (int_scaling_impl): IntScaling()
+                  (zero_point_impl): ExpandReshapeZeroPointWrapper(
+                    (wrapped_zero_point_impl): ParameterFromStatsFromParameterZeroPoint(
+                      (parameter_list_stats): _ParameterListStats(
+                        (first_tracked_param): _ViewParameterWrapper(
+                          (view_shape_impl): OverSubChannelBlockView(
+                            (permute_impl): Identity()
+                          )
+                        )
+                        (stats): _Stats(
+                          (stats_impl): NegativeMinOrZero(
+                            (zero): StatelessBuffer()
+                          )
+                        )
+                      )
+                      (scale_shift_zero_point): _ScaleShiftZeroPoint(
+                        (int_quant): IntQuant(
+                          (float_to_int_impl): RoundSte()
+                          (tensor_clamp_impl): TensorClampSte()
+                          (delay_wrapper): DelayWrapper(
+                            (delay_impl): _NoDelay()
+                          )
+                        )
+                      )
+                    )
+                    (slice_tensor): SliceTensor()
+                  )
+                  (msb_clamp_bit_width_impl): BitWidthConst(
+                    (bit_width): StatelessBuffer()
+                  )
+                )
+              )
+              (bias_quant): BiasQuantProxyFromInjector(
+                (_zero_hw_sentinel): StatelessBuffer()
+              )
+            )
+            (v_proj): QuantLinear(
+              in_features=768, out_features=768, bias=True
+              (input_quant): ActQuantProxyFromInjector(
+                (_zero_hw_sentinel): StatelessBuffer()
+              )
+              (output_quant): ActQuantProxyFromInjector(
+                (_zero_hw_sentinel): StatelessBuffer()
+              )
+              (weight_quant): WeightQuantProxyFromInjector(
+                (_zero_hw_sentinel): StatelessBuffer()
+                (tensor_quant): RescalingIntQuant(
+                  (int_quant): IntQuant(
+                    (float_to_int_impl): RoundSte()
+                    (tensor_clamp_impl): TensorClampSte()
+                    (delay_wrapper): DelayWrapper(
+                      (delay_impl): _NoDelay()
+                    )
+                  )
+                  (scaling_impl): ExpandReshapeScalingWrapper(
+                    (wrapped_scaling_impl): ParameterFromStatsFromParameterScaling(
+                      (parameter_list_stats): _ParameterListStats(
+                        (first_tracked_param): _ViewParameterWrapper(
+                          (view_shape_impl): OverSubChannelBlockView(
+                            (permute_impl): Identity()
+                          )
+                        )
+                        (stats): _Stats(
+                          (stats_impl): AbsMinMax(
+                            (zero): StatelessBuffer()
+                          )
+                        )
+                      )
+                      (stats_scaling_impl): _StatsScaling(
+                        (affine_rescaling): Identity()
+                        (restrict_clamp_scaling): _RestrictClampValue(
+                          (clamp_min_ste): ScalarClampMinSte()
+                          (restrict_value_impl): FloatRestrictValue()
+                        )
+                        (restrict_scaling_pre): Identity()
+                      )
+                      (restrict_inplace_preprocess): Identity()
+                    )
+                    (slice_tensor): SliceTensor()
+                  )
+                  (int_scaling_impl): IntScaling()
+                  (zero_point_impl): ExpandReshapeZeroPointWrapper(
+                    (wrapped_zero_point_impl): ParameterFromStatsFromParameterZeroPoint(
+                      (parameter_list_stats): _ParameterListStats(
+                        (first_tracked_param): _ViewParameterWrapper(
+                          (view_shape_impl): OverSubChannelBlockView(
+                            (permute_impl): Identity()
+                          )
+                        )
+                        (stats): _Stats(
+                          (stats_impl): NegativeMinOrZero(
+                            (zero): StatelessBuffer()
+                          )
+                        )
+                      )
+                      (scale_shift_zero_point): _ScaleShiftZeroPoint(
+                        (int_quant): IntQuant(
+                          (float_to_int_impl): RoundSte()
+                          (tensor_clamp_impl): TensorClampSte()
+                          (delay_wrapper): DelayWrapper(
+                            (delay_impl): _NoDelay()
+                          )
+                        )
+                      )
+                    )
+                    (slice_tensor): SliceTensor()
+                  )
+                  (msb_clamp_bit_width_impl): BitWidthConst(
+                    (bit_width): StatelessBuffer()
+                  )
+                )
+              )
+              (bias_quant): BiasQuantProxyFromInjector(
+                (_zero_hw_sentinel): StatelessBuffer()
+              )
+            )
+            (q_proj): QuantLinear(
+              in_features=768, out_features=768, bias=True
+              (input_quant): ActQuantProxyFromInjector(
+                (_zero_hw_sentinel): StatelessBuffer()
+              )
+              (output_quant): ActQuantProxyFromInjector(
+                (_zero_hw_sentinel): StatelessBuffer()
+              )
+              (weight_quant): WeightQuantProxyFromInjector(
+                (_zero_hw_sentinel): StatelessBuffer()
+                (tensor_quant): RescalingIntQuant(
+                  (int_quant): IntQuant(
+                    (float_to_int_impl): RoundSte()
+                    (tensor_clamp_impl): TensorClampSte()
+                    (delay_wrapper): DelayWrapper(
+                      (delay_impl): _NoDelay()
+                    )
+                  )
+                  (scaling_impl): ExpandReshapeScalingWrapper(
+                    (wrapped_scaling_impl): ParameterFromStatsFromParameterScaling(
+                      (parameter_list_stats): _ParameterListStats(
+                        (first_tracked_param): _ViewParameterWrapper(
+                          (view_shape_impl): OverSubChannelBlockView(
+                            (permute_impl): Identity()
+                          )
+                        )
+                        (stats): _Stats(
+                          (stats_impl): AbsMinMax(
+                            (zero): StatelessBuffer()
+                          )
+                        )
+                      )
+                      (stats_scaling_impl): _StatsScaling(
+                        (affine_rescaling): Identity()
+                        (restrict_clamp_scaling): _RestrictClampValue(
+                          (clamp_min_ste): ScalarClampMinSte()
+                          (restrict_value_impl): FloatRestrictValue()
+                        )
+                        (restrict_scaling_pre): Identity()
+                      )
+                      (restrict_inplace_preprocess): Identity()
+                    )
+                    (slice_tensor): SliceTensor()
+                  )
+                  (int_scaling_impl): IntScaling()
+                  (zero_point_impl): ExpandReshapeZeroPointWrapper(
+                    (wrapped_zero_point_impl): ParameterFromStatsFromParameterZeroPoint(
+                      (parameter_list_stats): _ParameterListStats(
+                        (first_tracked_param): _ViewParameterWrapper(
+                          (view_shape_impl): OverSubChannelBlockView(
+                            (permute_impl): Identity()
+                          )
+                        )
+                        (stats): _Stats(
+                          (stats_impl): NegativeMinOrZero(
+                            (zero): StatelessBuffer()
+                          )
+                        )
+                      )
+                      (scale_shift_zero_point): _ScaleShiftZeroPoint(
+                        (int_quant): IntQuant(
+                          (float_to_int_impl): RoundSte()
+                          (tensor_clamp_impl): TensorClampSte()
+                          (delay_wrapper): DelayWrapper(
+                            (delay_impl): _NoDelay()
+                          )
+                        )
+                      )
+                    )
+                    (slice_tensor): SliceTensor()
+                  )
+                  (msb_clamp_bit_width_impl): BitWidthConst(
+                    (bit_width): StatelessBuffer()
+                  )
+                )
+              )
+              (bias_quant): BiasQuantProxyFromInjector(
+                (_zero_hw_sentinel): StatelessBuffer()
+              )
+            )
+            (out_proj): QuantLinear(
+              in_features=768, out_features=768, bias=True
+              (input_quant): ActQuantProxyFromInjector(
+                (_zero_hw_sentinel): StatelessBuffer()
+              )
+              (output_quant): ActQuantProxyFromInjector(
+                (_zero_hw_sentinel): StatelessBuffer()
+              )
+              (weight_quant): WeightQuantProxyFromInjector(
+                (_zero_hw_sentinel): StatelessBuffer()
+                (tensor_quant): RescalingIntQuant(
+                  (int_quant): IntQuant(
+                    (float_to_int_impl): RoundSte()
+                    (tensor_clamp_impl): TensorClampSte()
+                    (delay_wrapper): DelayWrapper(
+                      (delay_impl): _NoDelay()
+                    )
+                  )
+                  (scaling_impl): ExpandReshapeScalingWrapper(
+                    (wrapped_scaling_impl): ParameterFromStatsFromParameterScaling(
+                      (parameter_list_stats): _ParameterListStats(
+                        (first_tracked_param): _ViewParameterWrapper(
+                          (view_shape_impl): OverSubChannelBlockView(
+                            (permute_impl): Identity()
+                          )
+                        )
+                        (stats): _Stats(
+                          (stats_impl): AbsMinMax(
+                            (zero): StatelessBuffer()
+                          )
+                        )
+                      )
+                      (stats_scaling_impl): _StatsScaling(
+                        (affine_rescaling): Identity()
+                        (restrict_clamp_scaling): _RestrictClampValue(
+                          (clamp_min_ste): ScalarClampMinSte()
+                          (restrict_value_impl): FloatRestrictValue()
+                        )
+                        (restrict_scaling_pre): Identity()
+                      )
+                      (restrict_inplace_preprocess): Identity()
+                    )
+                    (slice_tensor): SliceTensor()
+                  )
+                  (int_scaling_impl): IntScaling()
+                  (zero_point_impl): ExpandReshapeZeroPointWrapper(
+                    (wrapped_zero_point_impl): ParameterFromStatsFromParameterZeroPoint(
+                      (parameter_list_stats): _ParameterListStats(
+                        (first_tracked_param): _ViewParameterWrapper(
+                          (view_shape_impl): OverSubChannelBlockView(
+                            (permute_impl): Identity()
+                          )
+                        )
+                        (stats): _Stats(
+                          (stats_impl): NegativeMinOrZero(
+                            (zero): StatelessBuffer()
+                          )
+                        )
+                      )
+                      (scale_shift_zero_point): _ScaleShiftZeroPoint(
+                        (int_quant): IntQuant(
+                          (float_to_int_impl): RoundSte()
+                          (tensor_clamp_impl): TensorClampSte()
+                          (delay_wrapper): DelayWrapper(
+                            (delay_impl): _NoDelay()
+                          )
+                        )
+                      )
+                    )
+                    (slice_tensor): SliceTensor()
+                  )
+                  (msb_clamp_bit_width_impl): BitWidthConst(
+                    (bit_width): StatelessBuffer()
+                  )
+                )
+              )
+              (bias_quant): BiasQuantProxyFromInjector(
+                (_zero_hw_sentinel): StatelessBuffer()
+              )
+            )
+          )
+          (activation_fn): ReLU()
+          (self_attn_layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+          (fc1): QuantLinear(
+            in_features=768, out_features=3072, bias=True
+            (input_quant): ActQuantProxyFromInjector(
+              (_zero_hw_sentinel): StatelessBuffer()
+            )
+            (output_quant): ActQuantProxyFromInjector(
+              (_zero_hw_sentinel): StatelessBuffer()
+            )
+            (weight_quant): WeightQuantProxyFromInjector(
+              (_zero_hw_sentinel): StatelessBuffer()
+              (tensor_quant): RescalingIntQuant(
+                (int_quant): IntQuant(
+                  (float_to_int_impl): RoundSte()
+                  (tensor_clamp_impl): TensorClampSte()
+                  (delay_wrapper): DelayWrapper(
+                    (delay_impl): _NoDelay()
+                  )
+                )
+                (scaling_impl): ExpandReshapeScalingWrapper(
+                  (wrapped_scaling_impl): ParameterFromStatsFromParameterScaling(
+                    (parameter_list_stats): _ParameterListStats(
+                      (first_tracked_param): _ViewParameterWrapper(
+                        (view_shape_impl): OverSubChannelBlockView(
+                          (permute_impl): Identity()
+                        )
+                      )
+                      (stats): _Stats(
+                        (stats_impl): AbsMinMax(
+                          (zero): StatelessBuffer()
+                        )
+                      )
+                    )
+                    (stats_scaling_impl): _StatsScaling(
+                      (affine_rescaling): Identity()
+                      (restrict_clamp_scaling): _RestrictClampValue(
+                        (clamp_min_ste): ScalarClampMinSte()
+                        (restrict_value_impl): FloatRestrictValue()
+                      )
+                      (restrict_scaling_pre): Identity()
+                    )
+                    (restrict_inplace_preprocess): Identity()
+                  )
+                  (slice_tensor): SliceTensor()
+                )
+                (int_scaling_impl): IntScaling()
+                (zero_point_impl): ExpandReshapeZeroPointWrapper(
+                  (wrapped_zero_point_impl): ParameterFromStatsFromParameterZeroPoint(
+                    (parameter_list_stats): _ParameterListStats(
+                      (first_tracked_param): _ViewParameterWrapper(
+                        (view_shape_impl): OverSubChannelBlockView(
+                          (permute_impl): Identity()
+                        )
+                      )
+                      (stats): _Stats(
+                        (stats_impl): NegativeMinOrZero(
+                          (zero): StatelessBuffer()
+                        )
+                      )
+                    )
+                    (scale_shift_zero_point): _ScaleShiftZeroPoint(
+                      (int_quant): IntQuant(
+                        (float_to_int_impl): RoundSte()
+                        (tensor_clamp_impl): TensorClampSte()
+                        (delay_wrapper): DelayWrapper(
+                          (delay_impl): _NoDelay()
+                        )
+                      )
+                    )
+                  )
+                  (slice_tensor): SliceTensor()
+                )
+                (msb_clamp_bit_width_impl): BitWidthConst(
+                  (bit_width): StatelessBuffer()
+                )
+              )
+            )
+            (bias_quant): BiasQuantProxyFromInjector(
+              (_zero_hw_sentinel): StatelessBuffer()
+            )
+          )
+          (fc2): QuantLinear(
+            in_features=3072, out_features=768, bias=True
+            (input_quant): ActQuantProxyFromInjector(
+              (_zero_hw_sentinel): StatelessBuffer()
+            )
+            (output_quant): ActQuantProxyFromInjector(
+              (_zero_hw_sentinel): StatelessBuffer()
+            )
+            (weight_quant): WeightQuantProxyFromInjector(
+              (_zero_hw_sentinel): StatelessBuffer()
+              (tensor_quant): RescalingIntQuant(
+                (int_quant): IntQuant(
+                  (float_to_int_impl): RoundSte()
+                  (tensor_clamp_impl): TensorClampSte()
+                  (delay_wrapper): DelayWrapper(
+                    (delay_impl): _NoDelay()
+                  )
+                )
+                (scaling_impl): ExpandReshapeScalingWrapper(
+                  (wrapped_scaling_impl): ParameterFromStatsFromParameterScaling(
+                    (parameter_list_stats): _ParameterListStats(
+                      (first_tracked_param): _ViewParameterWrapper(
+                        (view_shape_impl): OverSubChannelBlockView(
+                          (permute_impl): Identity()
+                        )
+                      )
+                      (stats): _Stats(
+                        (stats_impl): AbsMinMax(
+                          (zero): StatelessBuffer()
+                        )
+                      )
+                    )
+                    (stats_scaling_impl): _StatsScaling(
+                      (affine_rescaling): Identity()
+                      (restrict_clamp_scaling): _RestrictClampValue(
+                        (clamp_min_ste): ScalarClampMinSte()
+                        (restrict_value_impl): FloatRestrictValue()
+                      )
+                      (restrict_scaling_pre): Identity()
+                    )
+                    (restrict_inplace_preprocess): Identity()
+                  )
+                  (slice_tensor): SliceTensor()
+                )
+                (int_scaling_impl): IntScaling()
+                (zero_point_impl): ExpandReshapeZeroPointWrapper(
+                  (wrapped_zero_point_impl): ParameterFromStatsFromParameterZeroPoint(
+                    (parameter_list_stats): _ParameterListStats(
+                      (first_tracked_param): _ViewParameterWrapper(
+                        (view_shape_impl): OverSubChannelBlockView(
+                          (permute_impl): Identity()
+                        )
+                      )
+                      (stats): _Stats(
+                        (stats_impl): NegativeMinOrZero(
+                          (zero): StatelessBuffer()
+                        )
+                      )
+                    )
+                    (scale_shift_zero_point): _ScaleShiftZeroPoint(
+                      (int_quant): IntQuant(
+                        (float_to_int_impl): RoundSte()
+                        (tensor_clamp_impl): TensorClampSte()
+                        (delay_wrapper): DelayWrapper(
+                          (delay_impl): _NoDelay()
+                        )
+                      )
+                    )
+                  )
+                  (slice_tensor): SliceTensor()
+                )
+                (msb_clamp_bit_width_impl): BitWidthConst(
+                  (bit_width): StatelessBuffer()
+                )
+              )
+            )
+            (bias_quant): BiasQuantProxyFromInjector(
+              (_zero_hw_sentinel): StatelessBuffer()
+            )
+          )
+          (final_layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+        )
+      )
+    )
+  )
+  (lm_head): Linear(in_features=768, out_features=50272, bias=False)
+)
+Model quantization applied.
+Applying thresholding...
+OPTForCausalLM(
+  (model): OPTModel(
+    (decoder): OPTDecoder(
+      (embed_tokens): Embedding(50272, 768, padding_idx=1)
+      (embed_positions): OPTLearnedPositionalEmbedding(2050, 768)
+      (final_layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+      (layers): ModuleList(
+        (0-11): 12 x OPTDecoderLayer(
+          (self_attn): OPTAttention(
+            (k_proj): QuantLinear(
+              in_features=768, out_features=768, bias=True
+              (input_quant): ActQuantProxyFromInjector(
+                (_zero_hw_sentinel): StatelessBuffer()
+              )
+              (output_quant): ActQuantProxyFromInjector(
+                (_zero_hw_sentinel): StatelessBuffer()
+              )
+              (weight_quant): WeightQuantProxyFromInjector(
+                (_zero_hw_sentinel): StatelessBuffer()
+                (tensor_quant): RescalingIntQuant(
+                  (int_quant): IntQuant(
+                    (float_to_int_impl): RoundSte()
+                    (tensor_clamp_impl): TensorClampSte()
+                    (delay_wrapper): DelayWrapper(
+                      (delay_impl): _NoDelay()
+                    )
+                  )
+                  (scaling_impl): ExpandReshapeScalingWrapper(
+                    (wrapped_scaling_impl): ParameterFromStatsFromParameterScaling(
+                      (parameter_list_stats): _ParameterListStats(
+                        (first_tracked_param): _ViewParameterWrapper(
+                          (view_shape_impl): OverSubChannelBlockView(
+                            (permute_impl): Identity()
+                          )
+                        )
+                        (stats): _Stats(
+                          (stats_impl): AbsMinMax(
+                            (zero): StatelessBuffer()
+                          )
+                        )
+                      )
+                      (stats_scaling_impl): _StatsScaling(
+                        (affine_rescaling): Identity()
+                        (restrict_clamp_scaling): _RestrictClampValue(
+                          (clamp_min_ste): ScalarClampMinSte()
+                          (restrict_value_impl): FloatRestrictValue()
+                        )
+                        (restrict_scaling_pre): Identity()
+                      )
+                      (restrict_inplace_preprocess): Identity()
+                    )
+                    (slice_tensor): SliceTensor()
+                  )
+                  (int_scaling_impl): IntScaling()
+                  (zero_point_impl): ExpandReshapeZeroPointWrapper(
+                    (wrapped_zero_point_impl): ParameterFromStatsFromParameterZeroPoint(
+                      (parameter_list_stats): _ParameterListStats(
+                        (first_tracked_param): _ViewParameterWrapper(
+                          (view_shape_impl): OverSubChannelBlockView(
+                            (permute_impl): Identity()
+                          )
+                        )
+                        (stats): _Stats(
+                          (stats_impl): NegativeMinOrZero(
+                            (zero): StatelessBuffer()
+                          )
+                        )
+                      )
+                      (scale_shift_zero_point): _ScaleShiftZeroPoint(
+                        (int_quant): IntQuant(
+                          (float_to_int_impl): RoundSte()
+                          (tensor_clamp_impl): TensorClampSte()
+                          (delay_wrapper): DelayWrapper(
+                            (delay_impl): _NoDelay()
+                          )
+                        )
+                      )
+                    )
+                    (slice_tensor): SliceTensor()
+                  )
+                  (msb_clamp_bit_width_impl): BitWidthConst(
+                    (bit_width): StatelessBuffer()
+                  )
+                )
+              )
+              (bias_quant): BiasQuantProxyFromInjector(
+                (_zero_hw_sentinel): StatelessBuffer()
+              )
+            )
+            (v_proj): QuantLinear(
+              in_features=768, out_features=768, bias=True
+              (input_quant): ActQuantProxyFromInjector(
+                (_zero_hw_sentinel): StatelessBuffer()
+              )
+              (output_quant): ActQuantProxyFromInjector(
+                (_zero_hw_sentinel): StatelessBuffer()
+              )
+              (weight_quant): WeightQuantProxyFromInjector(
+                (_zero_hw_sentinel): StatelessBuffer()
+                (tensor_quant): RescalingIntQuant(
+                  (int_quant): IntQuant(
+                    (float_to_int_impl): RoundSte()
+                    (tensor_clamp_impl): TensorClampSte()
+                    (delay_wrapper): DelayWrapper(
+                      (delay_impl): _NoDelay()
+                    )
+                  )
+                  (scaling_impl): ExpandReshapeScalingWrapper(
+                    (wrapped_scaling_impl): ParameterFromStatsFromParameterScaling(
+                      (parameter_list_stats): _ParameterListStats(
+                        (first_tracked_param): _ViewParameterWrapper(
+                          (view_shape_impl): OverSubChannelBlockView(
+                            (permute_impl): Identity()
+                          )
+                        )
+                        (stats): _Stats(
+                          (stats_impl): AbsMinMax(
+                            (zero): StatelessBuffer()
+                          )
+                        )
+                      )
+                      (stats_scaling_impl): _StatsScaling(
+                        (affine_rescaling): Identity()
+                        (restrict_clamp_scaling): _RestrictClampValue(
+                          (clamp_min_ste): ScalarClampMinSte()
+                          (restrict_value_impl): FloatRestrictValue()
+                        )
+                        (restrict_scaling_pre): Identity()
+                      )
+                      (restrict_inplace_preprocess): Identity()
+                    )
+                    (slice_tensor): SliceTensor()
+                  )
+                  (int_scaling_impl): IntScaling()
+                  (zero_point_impl): ExpandReshapeZeroPointWrapper(
+                    (wrapped_zero_point_impl): ParameterFromStatsFromParameterZeroPoint(
+                      (parameter_list_stats): _ParameterListStats(
+                        (first_tracked_param): _ViewParameterWrapper(
+                          (view_shape_impl): OverSubChannelBlockView(
+                            (permute_impl): Identity()
+                          )
+                        )
+                        (stats): _Stats(
+                          (stats_impl): NegativeMinOrZero(
+                            (zero): StatelessBuffer()
+                          )
+                        )
+                      )
+                      (scale_shift_zero_point): _ScaleShiftZeroPoint(
+                        (int_quant): IntQuant(
+                          (float_to_int_impl): RoundSte()
+                          (tensor_clamp_impl): TensorClampSte()
+                          (delay_wrapper): DelayWrapper(
+                            (delay_impl): _NoDelay()
+                          )
+                        )
+                      )
+                    )
+                    (slice_tensor): SliceTensor()
+                  )
+                  (msb_clamp_bit_width_impl): BitWidthConst(
+                    (bit_width): StatelessBuffer()
+                  )
+                )
+              )
+              (bias_quant): BiasQuantProxyFromInjector(
+                (_zero_hw_sentinel): StatelessBuffer()
+              )
+            )
+            (q_proj): QuantLinear(
+              in_features=768, out_features=768, bias=True
+              (input_quant): ActQuantProxyFromInjector(
+                (_zero_hw_sentinel): StatelessBuffer()
+              )
+              (output_quant): ActQuantProxyFromInjector(
+                (_zero_hw_sentinel): StatelessBuffer()
+              )
+              (weight_quant): WeightQuantProxyFromInjector(
+                (_zero_hw_sentinel): StatelessBuffer()
+                (tensor_quant): RescalingIntQuant(
+                  (int_quant): IntQuant(
+                    (float_to_int_impl): RoundSte()
+                    (tensor_clamp_impl): TensorClampSte()
+                    (delay_wrapper): DelayWrapper(
+                      (delay_impl): _NoDelay()
+                    )
+                  )
+                  (scaling_impl): ExpandReshapeScalingWrapper(
+                    (wrapped_scaling_impl): ParameterFromStatsFromParameterScaling(
+                      (parameter_list_stats): _ParameterListStats(
+                        (first_tracked_param): _ViewParameterWrapper(
+                          (view_shape_impl): OverSubChannelBlockView(
+                            (permute_impl): Identity()
+                          )
+                        )
+                        (stats): _Stats(
+                          (stats_impl): AbsMinMax(
+                            (zero): StatelessBuffer()
+                          )
+                        )
+                      )
+                      (stats_scaling_impl): _StatsScaling(
+                        (affine_rescaling): Identity()
+                        (restrict_clamp_scaling): _RestrictClampValue(
+                          (clamp_min_ste): ScalarClampMinSte()
+                          (restrict_value_impl): FloatRestrictValue()
+                        )
+                        (restrict_scaling_pre): Identity()
+                      )
+                      (restrict_inplace_preprocess): Identity()
+                    )
+                    (slice_tensor): SliceTensor()
+                  )
+                  (int_scaling_impl): IntScaling()
+                  (zero_point_impl): ExpandReshapeZeroPointWrapper(
+                    (wrapped_zero_point_impl): ParameterFromStatsFromParameterZeroPoint(
+                      (parameter_list_stats): _ParameterListStats(
+                        (first_tracked_param): _ViewParameterWrapper(
+                          (view_shape_impl): OverSubChannelBlockView(
+                            (permute_impl): Identity()
+                          )
+                        )
+                        (stats): _Stats(
+                          (stats_impl): NegativeMinOrZero(
+                            (zero): StatelessBuffer()
+                          )
+                        )
+                      )
+                      (scale_shift_zero_point): _ScaleShiftZeroPoint(
+                        (int_quant): IntQuant(
+                          (float_to_int_impl): RoundSte()
+                          (tensor_clamp_impl): TensorClampSte()
+                          (delay_wrapper): DelayWrapper(
+                            (delay_impl): _NoDelay()
+                          )
+                        )
+                      )
+                    )
+                    (slice_tensor): SliceTensor()
+                  )
+                  (msb_clamp_bit_width_impl): BitWidthConst(
+                    (bit_width): StatelessBuffer()
+                  )
+                )
+              )
+              (bias_quant): BiasQuantProxyFromInjector(
+                (_zero_hw_sentinel): StatelessBuffer()
+              )
+            )
+            (out_proj): QuantLinear(
+              in_features=768, out_features=768, bias=True
+              (input_quant): ActQuantProxyFromInjector(
+                (_zero_hw_sentinel): StatelessBuffer()
+              )
+              (output_quant): ActQuantProxyFromInjector(
+                (_zero_hw_sentinel): StatelessBuffer()
+              )
+              (weight_quant): WeightQuantProxyFromInjector(
+                (_zero_hw_sentinel): StatelessBuffer()
+                (tensor_quant): RescalingIntQuant(
+                  (int_quant): IntQuant(
+                    (float_to_int_impl): RoundSte()
+                    (tensor_clamp_impl): TensorClampSte()
+                    (delay_wrapper): DelayWrapper(
+                      (delay_impl): _NoDelay()
+                    )
+                  )
+                  (scaling_impl): ExpandReshapeScalingWrapper(
+                    (wrapped_scaling_impl): ParameterFromStatsFromParameterScaling(
+                      (parameter_list_stats): _ParameterListStats(
+                        (first_tracked_param): _ViewParameterWrapper(
+                          (view_shape_impl): OverSubChannelBlockView(
+                            (permute_impl): Identity()
+                          )
+                        )
+                        (stats): _Stats(
+                          (stats_impl): AbsMinMax(
+                            (zero): StatelessBuffer()
+                          )
+                        )
+                      )
+                      (stats_scaling_impl): _StatsScaling(
+                        (affine_rescaling): Identity()
+                        (restrict_clamp_scaling): _RestrictClampValue(
+                          (clamp_min_ste): ScalarClampMinSte()
+                          (restrict_value_impl): FloatRestrictValue()
+                        )
+                        (restrict_scaling_pre): Identity()
+                      )
+                      (restrict_inplace_preprocess): Identity()
+                    )
+                    (slice_tensor): SliceTensor()
+                  )
+                  (int_scaling_impl): IntScaling()
+                  (zero_point_impl): ExpandReshapeZeroPointWrapper(
+                    (wrapped_zero_point_impl): ParameterFromStatsFromParameterZeroPoint(
+                      (parameter_list_stats): _ParameterListStats(
+                        (first_tracked_param): _ViewParameterWrapper(
+                          (view_shape_impl): OverSubChannelBlockView(
+                            (permute_impl): Identity()
+                          )
+                        )
+                        (stats): _Stats(
+                          (stats_impl): NegativeMinOrZero(
+                            (zero): StatelessBuffer()
+                          )
+                        )
+                      )
+                      (scale_shift_zero_point): _ScaleShiftZeroPoint(
+                        (int_quant): IntQuant(
+                          (float_to_int_impl): RoundSte()
+                          (tensor_clamp_impl): TensorClampSte()
+                          (delay_wrapper): DelayWrapper(
+                            (delay_impl): _NoDelay()
+                          )
+                        )
+                      )
+                    )
+                    (slice_tensor): SliceTensor()
+                  )
+                  (msb_clamp_bit_width_impl): BitWidthConst(
+                    (bit_width): StatelessBuffer()
+                  )
+                )
+              )
+              (bias_quant): BiasQuantProxyFromInjector(
+                (_zero_hw_sentinel): StatelessBuffer()
+              )
+            )
+          )
+          (activation_fn): ReLU()
+          (self_attn_layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+          (fc1): QuantLinear(
+            in_features=768, out_features=3072, bias=True
+            (input_quant): ActQuantProxyFromInjector(
+              (_zero_hw_sentinel): StatelessBuffer()
+            )
+            (output_quant): ActQuantProxyFromInjector(
+              (_zero_hw_sentinel): StatelessBuffer()
+            )
+            (weight_quant): WeightQuantProxyFromInjector(
+              (_zero_hw_sentinel): StatelessBuffer()
+              (tensor_quant): RescalingIntQuant(
+                (int_quant): IntQuant(
+                  (float_to_int_impl): RoundSte()
+                  (tensor_clamp_impl): TensorClampSte()
+                  (delay_wrapper): DelayWrapper(
+                    (delay_impl): _NoDelay()
+                  )
+                )
+                (scaling_impl): ExpandReshapeScalingWrapper(
+                  (wrapped_scaling_impl): ParameterFromStatsFromParameterScaling(
+                    (parameter_list_stats): _ParameterListStats(
+                      (first_tracked_param): _ViewParameterWrapper(
+                        (view_shape_impl): OverSubChannelBlockView(
+                          (permute_impl): Identity()
+                        )
+                      )
+                      (stats): _Stats(
+                        (stats_impl): AbsMinMax(
+                          (zero): StatelessBuffer()
+                        )
+                      )
+                    )
+                    (stats_scaling_impl): _StatsScaling(
+                      (affine_rescaling): Identity()
+                      (restrict_clamp_scaling): _RestrictClampValue(
+                        (clamp_min_ste): ScalarClampMinSte()
+                        (restrict_value_impl): FloatRestrictValue()
+                      )
+                      (restrict_scaling_pre): Identity()
+                    )
+                    (restrict_inplace_preprocess): Identity()
+                  )
+                  (slice_tensor): SliceTensor()
+                )
+                (int_scaling_impl): IntScaling()
+                (zero_point_impl): ExpandReshapeZeroPointWrapper(
+                  (wrapped_zero_point_impl): ParameterFromStatsFromParameterZeroPoint(
+                    (parameter_list_stats): _ParameterListStats(
+                      (first_tracked_param): _ViewParameterWrapper(
+                        (view_shape_impl): OverSubChannelBlockView(
+                          (permute_impl): Identity()
+                        )
+                      )
+                      (stats): _Stats(
+                        (stats_impl): NegativeMinOrZero(
+                          (zero): StatelessBuffer()
+                        )
+                      )
+                    )
+                    (scale_shift_zero_point): _ScaleShiftZeroPoint(
+                      (int_quant): IntQuant(
+                        (float_to_int_impl): RoundSte()
+                        (tensor_clamp_impl): TensorClampSte()
+                        (delay_wrapper): DelayWrapper(
+                          (delay_impl): _NoDelay()
+                        )
+                      )
+                    )
+                  )
+                  (slice_tensor): SliceTensor()
+                )
+                (msb_clamp_bit_width_impl): BitWidthConst(
+                  (bit_width): StatelessBuffer()
+                )
+              )
+            )
+            (bias_quant): BiasQuantProxyFromInjector(
+              (_zero_hw_sentinel): StatelessBuffer()
+            )
+          )
+          (fc2): QuantLinear(
+            in_features=3072, out_features=768, bias=True
+            (input_quant): ActQuantProxyFromInjector(
+              (_zero_hw_sentinel): StatelessBuffer()
+            )
+            (output_quant): ActQuantProxyFromInjector(
+              (_zero_hw_sentinel): StatelessBuffer()
+            )
+            (weight_quant): WeightQuantProxyFromInjector(
+              (_zero_hw_sentinel): StatelessBuffer()
+              (tensor_quant): RescalingIntQuant(
+                (int_quant): IntQuant(
+                  (float_to_int_impl): RoundSte()
+                  (tensor_clamp_impl): TensorClampSte()
+                  (delay_wrapper): DelayWrapper(
+                    (delay_impl): _NoDelay()
+                  )
+                )
+                (scaling_impl): ExpandReshapeScalingWrapper(
+                  (wrapped_scaling_impl): ParameterFromStatsFromParameterScaling(
+                    (parameter_list_stats): _ParameterListStats(
+                      (first_tracked_param): _ViewParameterWrapper(
+                        (view_shape_impl): OverSubChannelBlockView(
+                          (permute_impl): Identity()
+                        )
+                      )
+                      (stats): _Stats(
+                        (stats_impl): AbsMinMax(
+                          (zero): StatelessBuffer()
+                        )
+                      )
+                    )
+                    (stats_scaling_impl): _StatsScaling(
+                      (affine_rescaling): Identity()
+                      (restrict_clamp_scaling): _RestrictClampValue(
+                        (clamp_min_ste): ScalarClampMinSte()
+                        (restrict_value_impl): FloatRestrictValue()
+                      )
+                      (restrict_scaling_pre): Identity()
+                    )
+                    (restrict_inplace_preprocess): Identity()
+                  )
+                  (slice_tensor): SliceTensor()
+                )
+                (int_scaling_impl): IntScaling()
+                (zero_point_impl): ExpandReshapeZeroPointWrapper(
+                  (wrapped_zero_point_impl): ParameterFromStatsFromParameterZeroPoint(
+                    (parameter_list_stats): _ParameterListStats(
+                      (first_tracked_param): _ViewParameterWrapper(
+                        (view_shape_impl): OverSubChannelBlockView(
+                          (permute_impl): Identity()
+                        )
+                      )
+                      (stats): _Stats(
+                        (stats_impl): NegativeMinOrZero(
+                          (zero): StatelessBuffer()
+                        )
+                      )
+                    )
+                    (scale_shift_zero_point): _ScaleShiftZeroPoint(
+                      (int_quant): IntQuant(
+                        (float_to_int_impl): RoundSte()
+                        (tensor_clamp_impl): TensorClampSte()
+                        (delay_wrapper): DelayWrapper(
+                          (delay_impl): _NoDelay()
+                        )
+                      )
+                    )
+                  )
+                  (slice_tensor): SliceTensor()
+                )
+                (msb_clamp_bit_width_impl): BitWidthConst(
+                  (bit_width): StatelessBuffer()
+                )
+              )
+            )
+            (bias_quant): BiasQuantProxyFromInjector(
+              (_zero_hw_sentinel): StatelessBuffer()
+            )
+          )
+          (final_layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+        )
+      )
+    )
+  )
+  (lm_head): Linear(in_features=768, out_features=50272, bias=False)
+)
+Traceback (most recent call last):
+  File "/home/rohan/brevitas_dfc/src/brevitas_examples/llm/main.py", line 359, in <module>
+    main()
+  File "/home/rohan/brevitas_dfc/src/brevitas_examples/llm/main.py", line 340, in main
+    threshold(model)
+  File "/home/rohan/brevitas_dfc/src/brevitas_examples/llm/threshold_quantize.py", line 10, in threshold
+    weight_og   =   layer.quant_weight().int()
+  File "/temp/rohan/installs/ananconda3/envs/gpu-env/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1695, in __getattr__
+    raise AttributeError(f"'{type(self).__name__}' object has no attribute '{name}'")
+AttributeError: 'OPTForCausalLM' object has no attribute 'quant_weight'
