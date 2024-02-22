@@ -83,6 +83,8 @@ def main():
     predictions = []
     transcripts = []
     transcripts_len = []
+
+    print(data_layer)
     with torch.no_grad():
         for data in data_layer.data_iterator:
             tensors = []
